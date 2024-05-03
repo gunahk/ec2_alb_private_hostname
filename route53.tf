@@ -4,7 +4,7 @@ data "aws_route53_zone" "svc" {
 
 data "external" "privateIPs" {
   count   = length(var.listener_arns)
-  program = ["${path.module}/alb_private_ips.sh", var.region, "${var.name}-${count.index + 1}"]
+  program = ["${path.module}/alb_private_ips.sh", var.region, "${var.name}"]
 }
 
 resource "aws_route53_record" "hostname" {
